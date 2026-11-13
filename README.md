@@ -18,8 +18,8 @@ Built and tested with herdr-app 0.1.15 / hc 0.1.20 on Windows 11.
 **Install:**
 
 ```powershell
-git clone https://github.com/<you>/herdr-setup "$HOME\Desktop\herdr-setup"
-cd "$HOME\Desktop\herdr-setup"
+git clone https://github.com/tnbm25nrpy-commits/custom_herdr "$HOME\Desktop\custom_herdr"
+cd "$HOME\Desktop\custom_herdr"
 powershell -NoProfile -ExecutionPolicy Bypass -File install.ps1 -DryRun   # preview, changes nothing
 powershell -NoProfile -ExecutionPolicy Bypass -File install.ps1           # install
 ```

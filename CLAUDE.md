@@ -11,5 +11,5 @@ Key points:
 - PowerShell 5.1 mangles `"` in native args: send JSON to `herdr-app do` / `hc` from Bash, or build the raw command line.
 - Clone shipped layouts/mods before editing; never stop herdr-app or herdr-core.
 - Add new findings to HERDR-NOTES.md.
-- This folder is the git repo (github.com/<you>/herdr-setup). After a change: add new files to `manifest.ps1`, run `export.ps1`, commit, push (see README).
+- This folder is the git repo (github.com/tnbm25nrpy-commits/custom_herdr). After a change: add new files to `manifest.ps1`, run `export.ps1`, commit, push (see README).
   Update README.md "Features and changes" when a feature is added or removed.

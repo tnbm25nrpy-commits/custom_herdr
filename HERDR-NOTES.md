@@ -609,7 +609,7 @@ Gotchas:
 - Still open: a real mouse drag board -> Spaces (whether GPUI delivers hover/mouse-up to my-spaces during a press that started in todo) has not been tested by the user yet. An agent that finishes after its card was deleted leaves an orphan `data/todo/status/<id>.json` (harmless, ignored).
 
 ## Git repo + sync scripts (2026-11-12)
-- This folder is the git repo `github.com/<you>/herdr-setup` (private, branch main). `manifest.ps1` lists what is tracked (custom mods, layout `main-dynamic-tabs`, keys/programs/settings, themes, backgrounds, the herdr-related `~/.claude` scripts/hooks/skills/agents/quota-bar, `~/theme-tools`, `~/omarchy-tools`).
+- This folder is the git repo `github.com/tnbm25nrpy-commits/custom_herdr` (private, branch main). `manifest.ps1` lists what is tracked (custom mods, layout `main-dynamic-tabs`, keys/programs/settings, themes, backgrounds, the herdr-related `~/.claude` scripts/hooks/skills/agents/quota-bar, `~/theme-tools`, `~/omarchy-tools`).
 - `export.ps1` = live -> repo (mirrors deletions, skips `*.bak*`/`*.d.ts`); `install.ps1` = repo -> live (backs up replaced files as `.bak-install-<ts>`, merges `claude-settings.herdr.json` into `~/.claude/settings.json`, appends `claude-CLAUDE.herdr.md` to `~/.claude/CLAUDE.md`, then `layout.switch:main-dynamic-tabs`). Home paths are stored as `C:\Users\me` and rewritten on install (`-HomeDir <dir>` installs into a scratch folder for testing).
 - `.gitattributes` `* -text`: files are stored byte-for-byte (the layout keeps CRLF; theme-switch compares it with CAS).
 - **New mod / script / hook = add it to `manifest.ps1`**, run `export.ps1`, commit, push.
