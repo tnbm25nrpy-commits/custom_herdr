@@ -1,0 +1,6 @@
+# screenshots / scratch images in the workspace root
+/*.png
+/*.jpg
+# local Claude Code state for this workspace
+/.claude/
+*.herdr-install-tmp

@@ -1,0 +1,4 @@
+{ "programs": {
+    "claude": { "icon": "icons/claude.svg", "tint": true },
+    "claude-code": { "icon": "icons/claude.svg", "tint": true }
+} }

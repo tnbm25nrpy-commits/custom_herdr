@@ -1,0 +1,174 @@
+{
+ "atom-one-dark": [
+  [
+   "1-towashi.jpg",
+   "images/towashi.jpg"
+  ],
+  [
+   "2-landscape2.jpg",
+   "images/landscape2.jpg"
+  ],
+  [
+   "3-california.jpg",
+   "images/california.jpg"
+  ]
+ ],
+ "ayu-mirage": [
+  [
+   "1-shape-abstract.jpg",
+   "images/shape-abstract.jpg"
+  ],
+  [
+   "2-minimal-landscape.jpg",
+   "images/minimal_landscape.jpg"
+  ],
+  [
+   "3-saturn-rings.jpg",
+   "images/saturn-rings.jpg"
+  ]
+ ],
+ "ember": [
+  [
+   "1-sunset-city.jpg",
+   "images/sunset_city.png"
+  ],
+  [
+   "2-red-forest.jpg",
+   "images/red-forest.jpg"
+  ],
+  [
+   "3-steampunk-portal.jpg",
+   "images/steampunk_portal.png"
+  ]
+ ],
+ "github-dark": [
+  [
+   "1-japan.jpg",
+   "images/japan.png"
+  ],
+  [
+   "2-nord-dark-city.jpg",
+   "images/nord_dark_city.png"
+  ],
+  [
+   "3-dark-forest.jpg",
+   "images/dark_forest.png"
+  ]
+ ],
+ "monokai": [
+  [
+   "1-fantasy-woods.jpg",
+   "images/fantasy-woods.jpg"
+  ],
+  [
+   "2-town.jpg",
+   "images/town.jpg"
+  ],
+  [
+   "3-room.jpg",
+   "images/room.jpg"
+  ]
+ ],
+ "moonfly": [
+  [
+   "1-shiny-purple.jpg",
+   "images/shiny_purple.png"
+  ],
+  [
+   "2-colors.jpg",
+   "images/colors.jpg"
+  ],
+  [
+   "3-lana-silhouette.jpg",
+   "images/lana_silhouette.png"
+  ]
+ ],
+ "night-owl": [
+  [
+   "1-planet-with-sunrise.jpg",
+   "images/planet_with_sunrise.png"
+  ],
+  [
+   "2-light-ring.jpg",
+   "images/light-ring.jpg"
+  ],
+  [
+   "3-em-rofi.jpg",
+   "images/em-rofi.webp"
+  ]
+ ],
+ "oxocarbon": [
+  [
+   "1-nord-street.jpg",
+   "images/nord-street.png"
+  ],
+  [
+   "2-neosamurai.jpg",
+   "images/neosamurai.webp"
+  ],
+  [
+   "3-glass-sphere.jpg",
+   "images/glass-sphere.jpg"
+  ]
+ ],
+ "poimandres": [
+  [
+   "1-wallhaven-x67oxo.jpg",
+   "images/wallhaven-x67oxo.png"
+  ],
+  [
+   "2-fishing-stars.jpg",
+   "images/fishing_stars.jpg"
+  ],
+  [
+   "3-abstract.jpg",
+   "images/abstract.jpg"
+  ]
+ ],
+ "solarized-dark": [
+  [
+   "1-gas-station.jpg",
+   "images/gas-station.jpg"
+  ],
+  [
+   "2-ink-wave.jpg",
+   "images/ink_wave.png"
+  ],
+  [
+   "3-river.jpg",
+   "images/river.png"
+  ]
+ ],
+ "synthwave-84": [
+  [
+   "1-cyberpunk-car.jpg",
+   "images/cyberpunk_car.png"
+  ],
+  [
+   "2-neon-circle.jpg",
+   "images/neon-circle.jpg"
+  ],
+  [
+   "3-lets-go-home.jpg",
+   "images/lets_go_home.png"
+  ]
+ ],
+ "everforest": [
+  [
+   "1-shougan-castle.jpg",
+   "images/shougan_castle.png"
+  ]
+ ],
+ "kanagawa": [
+  [
+   "1-japan3.jpg",
+   "images/japan3.jpg"
+  ]
+ ],
+ "nebula": [
+  [
+   "1-wallhaven-9mjw78.jpg",
+   "images/wallhaven-9mjw78.png"
+  ]
+ ]
+}

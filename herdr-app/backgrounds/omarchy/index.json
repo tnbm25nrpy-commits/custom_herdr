@@ -1,0 +1,372 @@
+[
+  {
+    "theme": "atom-one-dark",
+    "mode": "dark",
+    "background": "#21252b",
+    "accent": "#61afef",
+    "backgrounds": [
+      "backgrounds/extra/atom-one-dark/1-towashi.jpg",
+      "backgrounds/extra/atom-one-dark/2-landscape2.jpg",
+      "backgrounds/extra/atom-one-dark/3-california.jpg"
+    ]
+  },
+  {
+    "theme": "ayu-mirage",
+    "mode": "dark",
+    "background": "#212733",
+    "accent": "#ffcc66",
+    "backgrounds": [
+      "backgrounds/extra/ayu-mirage/1-shape-abstract.jpg",
+      "backgrounds/extra/ayu-mirage/2-minimal-landscape.jpg",
+      "backgrounds/extra/ayu-mirage/3-saturn-rings.jpg"
+    ]
+  },
+  {
+    "theme": "catppuccin",
+    "mode": "dark",
+    "background": "#1e1e2e",
+    "accent": "#89b4fa",
+    "backgrounds": [
+      "backgrounds/omarchy/catppuccin/1-totoro.jpg",
+      "backgrounds/omarchy/catppuccin/2-waves.jpg",
+      "backgrounds/omarchy/catppuccin/3-blue-eye.jpg",
+      "backgrounds/omarchy/catppuccin/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "dracula",
+    "mode": "dark",
+    "background": "#282a36",
+    "accent": "#bd93f9",
+    "backgrounds": [
+      "backgrounds/extra/dracula/1-spooky-house.jpg",
+      "backgrounds/extra/dracula/2-waves.jpg",
+      "backgrounds/extra/dracula/3-mountains.jpg",
+      "backgrounds/extra/dracula/4-leaves.jpg"
+    ]
+  },
+  {
+    "theme": "ember",
+    "mode": "dark",
+    "background": "#2c1a1e",
+    "accent": "#e5484d",
+    "backgrounds": [
+      "backgrounds/extra/ember/1-sunset-city.jpg",
+      "backgrounds/extra/ember/2-red-forest.jpg",
+      "backgrounds/extra/ember/3-steampunk-portal.jpg"
+    ]
+  },
+  {
+    "theme": "ethereal",
+    "mode": "dark",
+    "background": "#060B1E",
+    "accent": "#7d82d9",
+    "backgrounds": [
+      "backgrounds/omarchy/ethereal/1-cosmic.jpg",
+      "backgrounds/omarchy/ethereal/2-meadow.jpg",
+      "backgrounds/omarchy/ethereal/3-roadster-starlight.jpg",
+      "backgrounds/omarchy/ethereal/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "everforest",
+    "mode": "dark",
+    "background": "#2d353b",
+    "accent": "#7fbbb3",
+    "backgrounds": [
+      "backgrounds/omarchy/everforest/1-tree-tops.jpg",
+      "backgrounds/omarchy/everforest/omarchy.jpg",
+      "backgrounds/extra/everforest/1-shougan-castle.jpg"
+    ]
+  },
+  {
+    "theme": "github-dark",
+    "mode": "dark",
+    "background": "#0d1117",
+    "accent": "#58a6ff",
+    "backgrounds": [
+      "backgrounds/extra/github-dark/1-japan.jpg",
+      "backgrounds/extra/github-dark/2-nord-dark-city.jpg",
+      "backgrounds/extra/github-dark/3-dark-forest.jpg"
+    ]
+  },
+  {
+    "theme": "gruvbox",
+    "mode": "dark",
+    "background": "#282828",
+    "accent": "#7daea3",
+    "backgrounds": [
+      "backgrounds/omarchy/gruvbox/1-the-backwater.jpg",
+      "backgrounds/omarchy/gruvbox/2-flower-basket.jpg",
+      "backgrounds/omarchy/gruvbox/3-village-square.jpg",
+      "backgrounds/omarchy/gruvbox/4-idyllic-procession.jpg",
+      "backgrounds/omarchy/gruvbox/5-leaves.jpg",
+      "backgrounds/omarchy/gruvbox/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "hackerman",
+    "mode": "dark",
+    "background": "#0B0C16",
+    "accent": "#82FB9C",
+    "backgrounds": [
+      "backgrounds/omarchy/hackerman/1-synth-scape.jpg",
+      "backgrounds/omarchy/hackerman/2-geometric.jpg",
+      "backgrounds/omarchy/hackerman/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "jade-horse",
+    "mode": "dark",
+    "background": "#142620",
+    "accent": "#8bcbb1",
+    "backgrounds": [
+      "backgrounds/omarchy/jade-horse/01-mountain-horses.jpg",
+      "backgrounds/omarchy/jade-horse/02-ink-horse.jpg",
+      "backgrounds/omarchy/jade-horse/03-carved-jade-horse.jpg",
+      "backgrounds/omarchy/jade-horse/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "kanagawa",
+    "mode": "dark",
+    "background": "#1f1f28",
+    "accent": "#dcd7ba",
+    "backgrounds": [
+      "backgrounds/omarchy/kanagawa/1-kanagawa.jpg",
+      "backgrounds/omarchy/kanagawa/omarchy.jpg",
+      "backgrounds/extra/kanagawa/1-japan3.jpg"
+    ]
+  },
+  {
+    "theme": "last-horizon",
+    "mode": "dark",
+    "background": "#0c0b0c",
+    "accent": "#b59790",
+    "backgrounds": [
+      "backgrounds/omarchy/last-horizon/1-eyes-wide.jpg",
+      "backgrounds/omarchy/last-horizon/2-blink.jpg",
+      "backgrounds/omarchy/last-horizon/3-bokeh.jpg",
+      "backgrounds/omarchy/last-horizon/4-new-horizons.jpg"
+    ]
+  },
+  {
+    "theme": "lumon",
+    "mode": "dark",
+    "background": "#16242d",
+    "accent": "#8bc9eb",
+    "backgrounds": [
+      "backgrounds/omarchy/lumon/01-united-in-severance.jpg",
+      "backgrounds/omarchy/lumon/02-opinions-equally.jpg",
+      "backgrounds/omarchy/lumon/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "matte-black",
+    "mode": "dark",
+    "background": "#121212",
+    "accent": "#e68e0d",
+    "backgrounds": [
+      "backgrounds/omarchy/matte-black/0-ship-at-sea.jpg",
+      "backgrounds/omarchy/matte-black/1-dark-waters.jpg",
+      "backgrounds/omarchy/matte-black/2-dot-hands.jpg",
+      "backgrounds/omarchy/matte-black/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "miasma",
+    "mode": "dark",
+    "background": "#222222",
+    "accent": "#78824b",
+    "backgrounds": [
+      "backgrounds/omarchy/miasma/01-nature-of-fear.jpg",
+      "backgrounds/omarchy/miasma/02-crowned.jpg",
+      "backgrounds/omarchy/miasma/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "monokai",
+    "mode": "dark",
+    "background": "#272822",
+    "accent": "#a6e22e",
+    "backgrounds": [
+      "backgrounds/extra/monokai/1-fantasy-woods.jpg",
+      "backgrounds/extra/monokai/2-town.jpg",
+      "backgrounds/extra/monokai/3-room.jpg"
+    ]
+  },
+  {
+    "theme": "moonfly",
+    "mode": "dark",
+    "background": "#080808",
+    "accent": "#80a0ff",
+    "backgrounds": [
+      "backgrounds/extra/moonfly/1-shiny-purple.jpg",
+      "backgrounds/extra/moonfly/2-colors.jpg",
+      "backgrounds/extra/moonfly/3-lana-silhouette.jpg"
+    ]
+  },
+  {
+    "theme": "night-owl",
+    "mode": "dark",
+    "background": "#011627",
+    "accent": "#82aaff",
+    "backgrounds": [
+      "backgrounds/extra/night-owl/1-planet-with-sunrise.jpg",
+      "backgrounds/extra/night-owl/2-light-ring.jpg",
+      "backgrounds/extra/night-owl/3-em-rofi.jpg"
+    ]
+  },
+  {
+    "theme": "nord",
+    "mode": "dark",
+    "background": "#2e3440",
+    "accent": "#81a1c1",
+    "backgrounds": [
+      "backgrounds/omarchy/nord/0-black-moon.jpg",
+      "backgrounds/omarchy/nord/1-city-view.jpg",
+      "backgrounds/omarchy/nord/2-night-hawks.jpg",
+      "backgrounds/omarchy/nord/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "oxocarbon",
+    "mode": "dark",
+    "background": "#161616",
+    "accent": "#78a9ff",
+    "backgrounds": [
+      "backgrounds/extra/oxocarbon/1-nord-street.jpg",
+      "backgrounds/extra/oxocarbon/2-neosamurai.jpg",
+      "backgrounds/extra/oxocarbon/3-glass-sphere.jpg"
+    ]
+  },
+  {
+    "theme": "poimandres",
+    "mode": "dark",
+    "background": "#1b1e28",
+    "accent": "#5de4c7",
+    "backgrounds": [
+      "backgrounds/extra/poimandres/1-wallhaven-x67oxo.jpg",
+      "backgrounds/extra/poimandres/2-fishing-stars.jpg",
+      "backgrounds/extra/poimandres/3-abstract.jpg"
+    ]
+  },
+  {
+    "theme": "retro-82",
+    "mode": "dark",
+    "background": "#05182e",
+    "accent": "#faa968",
+    "backgrounds": [
+      "backgrounds/omarchy/retro-82/1-in-the-groove.jpg",
+      "backgrounds/omarchy/retro-82/2-dusk-guardian.jpg",
+      "backgrounds/omarchy/retro-82/3-glassy-lines.jpg",
+      "backgrounds/omarchy/retro-82/4-gateway.jpg",
+      "backgrounds/omarchy/retro-82/5-zen-boat.jpg",
+      "backgrounds/omarchy/retro-82/6-abstract-pyramids.jpg",
+      "backgrounds/omarchy/retro-82/7-the-journey.jpg",
+      "backgrounds/omarchy/retro-82/8-glitter-glass.jpg",
+      "backgrounds/omarchy/retro-82/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "ristretto",
+    "mode": "dark",
+    "background": "#2c2525",
+    "accent": "#f38d70",
+    "backgrounds": [
+      "backgrounds/omarchy/ristretto/0-launch.jpg",
+      "backgrounds/omarchy/ristretto/1-color-curves.jpg",
+      "backgrounds/omarchy/ristretto/2-coffee-beans.jpg",
+      "backgrounds/omarchy/ristretto/3-industrial-moon.jpg",
+      "backgrounds/omarchy/ristretto/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "rose-pine-moon",
+    "mode": "dark",
+    "background": "#232136",
+    "accent": "#c4a7e7",
+    "backgrounds": [
+      "backgrounds/extra/rose-pine-moon/1-leafy-moon.jpg",
+      "backgrounds/extra/rose-pine-moon/2-block-wave.jpg",
+      "backgrounds/extra/rose-pine-moon/3-contour-line.jpg"
+    ]
+  },
+  {
+    "theme": "solarized-dark",
+    "mode": "dark",
+    "background": "#002b36",
+    "accent": "#268bd2",
+    "backgrounds": [
+      "backgrounds/extra/solarized-dark/1-gas-station.jpg",
+      "backgrounds/extra/solarized-dark/2-ink-wave.jpg",
+      "backgrounds/extra/solarized-dark/3-river.jpg"
+    ]
+  },
+  {
+    "theme": "solitude",
+    "mode": "dark",
+    "background": "#101315",
+    "accent": "#798186",
+    "backgrounds": [
+      "backgrounds/omarchy/solitude/1-on-pole.jpg",
+      "backgrounds/omarchy/solitude/2-wreakage.jpg",
+      "backgrounds/omarchy/solitude/3-climb.jpg",
+      "backgrounds/omarchy/solitude/4-ether.jpg",
+      "backgrounds/omarchy/solitude/5-eyed.jpg"
+    ]
+  },
+  {
+    "theme": "starship",
+    "mode": "dark",
+    "background": "#1c1c1e",
+    "accent": "#ff9f0a",
+    "backgrounds": [
+      "backgrounds/omarchy/starship/1-starbase.jpg",
+      "backgrounds/omarchy/starship/2-flight14-dawn.jpg",
+      "backgrounds/omarchy/starship/3-engine-cluster.jpg",
+      "backgrounds/omarchy/starship/4-morning-pad.jpg"
+    ]
+  },
+  {
+    "theme": "synthwave-84",
+    "mode": "dark",
+    "background": "#262335",
+    "accent": "#ff7edb",
+    "backgrounds": [
+      "backgrounds/extra/synthwave-84/1-cyberpunk-car.jpg",
+      "backgrounds/extra/synthwave-84/2-neon-circle.jpg",
+      "backgrounds/extra/synthwave-84/3-lets-go-home.jpg"
+    ]
+  },
+  {
+    "theme": "tokyo-night",
+    "mode": "dark",
+    "background": "#1a1b26",
+    "accent": "#7aa2f7",
+    "backgrounds": [
+      "backgrounds/omarchy/tokyo-night/0-liftoff.jpg",
+      "backgrounds/omarchy/tokyo-night/1-winding-road.jpg",
+      "backgrounds/omarchy/tokyo-night/2-quattro.jpg",
+      "backgrounds/omarchy/tokyo-night/3-swirl-buck.jpg",
+      "backgrounds/omarchy/tokyo-night/4-sunset-lake.jpg",
+      "backgrounds/omarchy/tokyo-night/5-omakub.jpg",
+      "backgrounds/omarchy/tokyo-night/6-oma-cityscape.jpg",
+      "backgrounds/omarchy/tokyo-night/7-oma.jpg",
+      "backgrounds/omarchy/tokyo-night/omarchy.jpg"
+    ]
+  },
+  {
+    "theme": "vantablack",
+    "mode": "dark",
+    "background": "#000000",
+    "accent": "#8d8d8d",
+    "backgrounds": [
+      "backgrounds/omarchy/vantablack/0-dot-hands.jpg",
+      "backgrounds/omarchy/vantablack/1-twisted-stairs.jpg",
+      "backgrounds/omarchy/vantablack/2-layers-deep.jpg",
+      "backgrounds/omarchy/vantablack/3-layers-stacked.jpg",
+      "backgrounds/omarchy/vantablack/omarchy.jpg"
+    ]
+  }
+]

@@ -1,0 +1,210 @@
+{
+  "_comment": "Merged into ~/.claude/settings.json by install.ps1 (tools/merge-claude-settings.mjs). {HOME} = forward-slash home dir, {HOME_WIN} = backslash home dir. Existing keys win; hooks are added only if the same command is not there yet.",
+  "env": {
+    "CLAUDE_CODE_PLUGIN_DIRS": "{HOME_WIN}\\.claude\\mods"
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Read|Bash|PowerShell|mcp__.*screenshot.*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/show-enforce.mjs",
+              "post"
+            ],
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "post"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "powershell -NoProfile -ExecutionPolicy Bypass -File \"{HOME_WIN}\\.claude\\hooks\\herdr-wait-state.ps1\"",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/show-enforce.mjs",
+              "stop"
+            ],
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "stop"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "session"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreCompact": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "compact"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "pre"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "prompt"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "fail"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "matcher": "*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "ask"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SubagentStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "sub_start"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node",
+            "args": [
+              "{HOME}/.claude/hooks/agent-map.mjs",
+              "sub_stop"
+            ],
+            "timeout": 5,
+            "async": true
+          }
+        ]
+      }
+    ]
+  }
+}

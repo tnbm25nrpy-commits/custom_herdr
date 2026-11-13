@@ -1,0 +1,6 @@
+{
+  "name": "quota-bar",
+  "version": "0.1.0",
+  "description": "A band above the prompt showing context window fill and plan usage limits with run-out forecasts",
+  "types": "./types/index.d.ts"
+}
