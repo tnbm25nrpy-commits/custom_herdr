@@ -177,7 +177,7 @@
                     }
                   ],
                   "size": {
-                    "px": 284
+                    "px": 283
                   },
                   "min": 280,
                   "max": 900,
@@ -185,7 +185,7 @@
                 }
               ],
               "padding": 8,
-              "gap": 8
+              "gap": 16
             },
             {
               "id": "todo",
@@ -234,16 +234,6 @@
           "type": "block",
           "content": {
             "mod": "no-toast"
-          },
-          "size": {
-            "px": 0
-          }
-        },
-        {
-          "id": "space-dedupe",
-          "type": "block",
-          "content": {
-            "mod": "space-dedupe"
           },
           "size": {
             "px": 0
