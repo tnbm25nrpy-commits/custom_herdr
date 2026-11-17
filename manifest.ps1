@@ -23,7 +23,7 @@ $Tracked = @{
         Files = @('layouts\main-dynamic-tabs.json', 'keys.json', 'programs.json', 'settings.json')
     }
     'claude' = @{
-        Dirs  = @('skills\show-image', 'skills\delegate', 'mods\quota-bar')
+        Dirs  = @('skills\show-image', 'skills\delegate', 'mods\quota-bar', 'mods\copy-buttons')
         Files = @(
             'scripts\show-image.ps1', 'scripts\kitty-show.ps1', 'scripts\herdr-worker.ps1',
             'scripts\trust-dir.mjs', 'scripts\sec-scan.sh',
@@ -43,7 +43,7 @@ $Tracked = @{
 
 # Never tracked: backups, generated type files, editor/runtime junk.
 $ExcludeFiles = @('*.bak', '*.bak-*', '*.bak.*', '*.d.ts', '*.orig', '*.tmp', '*.pyc', 'Thumbs.db', 'desktop.ini')
-$ExcludeDirs  = @('node_modules', '.state', 'inbox', 'tmp', '__pycache__')
+$ExcludeDirs  = @('.git', 'node_modules', '.state', 'inbox', 'tmp', '__pycache__')
 
 # Files whose text may contain the home path (rewritten on export/install).
 $TextExt = @('.js', '.mjs', '.ts', '.tsx', '.json', '.ps1', '.psm1', '.sh', '.md', '.py', '.txt', '.svg')

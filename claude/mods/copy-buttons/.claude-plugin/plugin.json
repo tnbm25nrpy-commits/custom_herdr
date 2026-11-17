@@ -1,0 +1,44 @@
+{
+  "name": "copy-buttons",
+  "version": "1.5.7",
+  "description": "One-click copy buttons on each code block and table, and at the end of every final answer: the reply as markdown or rendered, code, and tables as markdown, spreadsheet rows or boxed.",
+  "author": { "name": "leonasdev", "email": "s8952889@gmail.com" },
+  "homepage": "https://github.com/leonasdev/copy-buttons",
+  "repository": "https://github.com/leonasdev/copy-buttons",
+  "license": "MIT",
+  "keywords": ["copy", "clipboard", "code-block", "table", "terminal"],
+  "types": "./types/index.d.ts",
+  "userConfig": {
+    "icon": {
+      "type": "string",
+      "title": "Icon style",
+      "description": "The icon before each copy button. standard: ⧉, in any font. nerd-font: 󰆏, which needs a Nerd Font; pick it only if this icon shows here.",
+      "default": "standard",
+      "options": [
+        "standard",
+        "nerd-font"
+      ]
+    },
+    "replyFormat": {
+      "type": "string",
+      "title": "Default Reply copy format",
+      "description": "What Reply copies on its first click. markdown: the reply as Claude wrote it. rendered: as the terminal shows it, without its line wrapping. Clicking again while it shows ✓ copies the other.",
+      "default": "markdown",
+      "options": [
+        "markdown",
+        "rendered"
+      ]
+    },
+    "blockButtons": {
+      "type": "string",
+      "title": "Code & table buttons",
+      "description": "When a code block's or table's copy buttons show, at its top right. hover: while the pointer is over it. always: all the time, except one that would cover text in a narrow window. end-of-answer: never on the block; its button stays at the end of the answer (for a terminal that reports no pointer motion).",
+      "default": "hover",
+      "options": [
+        "hover",
+        "always",
+        "end-of-answer"
+      ]
+    }
+  }
+}

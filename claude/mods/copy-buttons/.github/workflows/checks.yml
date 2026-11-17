@@ -1,0 +1,90 @@
+# Every check, at a Claude Code version: called by ci.yml and
+# claude-code-watch.yml.
+name: Checks
+
+on:
+  workflow_call:
+    inputs:
+      claude-code-version:
+        description: The Claude Code version to check with; .github/claude-code-version's when empty.
+        type: string
+        default: ''
+      platforms:
+        description: Run the tests and the transcript readers on macOS and Windows too.
+        type: boolean
+        default: false
+      live:
+        description: Have the model answer a turn with the plugin loaded (needs CLAUDE_CODE_OAUTH_TOKEN).
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    name: Linux, on a real screen
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+        with:
+          claude-code-version: ${{ inputs.claude-code-version }}
+
+      - run: claude plugin validate .
+      - run: claude plugin validate . --profile directory
+      - run: claude plugin test .
+        if: ${{ !cancelled() }}
+      - run: bun test ./dev/check-readers.ts
+        if: ${{ !cancelled() }}
+      # Loads the plugin from the folder, which writes the types tsc reads.
+      - run: bun dev/check-buttons.ts
+        if: ${{ !cancelled() }}
+      - run: bun dev/check-rendering.ts
+        if: ${{ !cancelled() }}
+        env:
+          CHECK_OUT: ${{ runner.temp }}/rendering
+      - run: bun dev/capture-fixtures.ts
+        if: ${{ !cancelled() }}
+      - run: npx -y -p typescript@5.6.3 tsc -p .
+        if: ${{ !cancelled() }}
+
+      - name: Keep what the screens showed
+        if: failure()
+        run: mkdir -p "$RUNNER_TEMP/rendering" && git diff tests/fixtures/ > "$RUNNER_TEMP/rendering/fixtures.diff"
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        if: failure()
+        with:
+          name: screens
+          path: ${{ runner.temp }}/rendering/
+          if-no-files-found: ignore
+
+  platforms:
+    name: ${{ matrix.os }}
+    if: inputs.platforms
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-15, windows-2025]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+        with:
+          claude-code-version: ${{ inputs.claude-code-version }}
+      - run: claude plugin test .
+      - run: bun test ./dev/check-readers.ts
+        if: ${{ !cancelled() }}
+
+  live:
+    name: A turn the model answers
+    if: inputs.live
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: ./.github/actions/setup
+        with:
+          claude-code-version: ${{ inputs.claude-code-version }}
+      - run: bun dev/check-live.ts
+        env:
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}

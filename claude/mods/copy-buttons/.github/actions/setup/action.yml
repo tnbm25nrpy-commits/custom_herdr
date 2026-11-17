@@ -1,0 +1,52 @@
+name: Set up
+description: Bun, Claude Code at a version by its native installer, and tmux on Linux.
+
+inputs:
+  claude-code-version:
+    description: The Claude Code version to install; .github/claude-code-version's when empty.
+    default: ''
+
+runs:
+  using: composite
+  steps:
+    - uses: oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6 # v2.2.0
+
+    # No update while the checks run, and nothing sent but what they ask for.
+    - name: Settle Claude Code's environment
+      shell: bash
+      run: |
+        echo DISABLE_AUTOUPDATER=1 >> "$GITHUB_ENV"
+        echo CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 >> "$GITHUB_ENV"
+
+    - name: Install Claude Code
+      if: runner.os != 'Windows'
+      shell: bash
+      env:
+        WANTED: ${{ inputs.claude-code-version }}
+      run: |
+        version=${WANTED:-$(cat .github/claude-code-version)}
+        curl -fsSL https://claude.ai/install.sh | bash -s "$version"
+        echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+        echo "CLAUDE_CODE_WANTED=$version" >> "$GITHUB_ENV"
+
+    - name: Install Claude Code
+      if: runner.os == 'Windows'
+      shell: pwsh
+      env:
+        WANTED: ${{ inputs.claude-code-version }}
+      run: |
+        $version = if ($env:WANTED) { $env:WANTED } else { (Get-Content .github/claude-code-version).Trim() }
+        & ([scriptblock]::Create((Invoke-RestMethod https://claude.ai/install.ps1))) $version
+        "$env:USERPROFILE\.local\bin" | Out-File -Append -Encoding utf8 $env:GITHUB_PATH
+        "CLAUDE_CODE_WANTED=$version" | Out-File -Append -Encoding utf8 $env:GITHUB_ENV
+
+    - name: Check the version installed
+      shell: bash
+      run: |
+        claude --version
+        case "$(claude --version)" in "$CLAUDE_CODE_WANTED "*) ;; *) echo "installed is not $CLAUDE_CODE_WANTED" >&2; exit 1 ;; esac
+
+    - name: Install tmux
+      if: runner.os == 'Linux'
+      shell: bash
+      run: sudo apt-get install -y tmux && tmux -V

@@ -1,0 +1,11 @@
+{
+  "name": "copy-buttons",
+  "description": "Copy buttons for Claude Code's terminal: copy a reply, a code block or a table with one click",
+  "owner": { "name": "leonasdev", "email": "s8952889@gmail.com" },
+  "plugins": [
+    {
+      "name": "copy-buttons",
+      "source": { "source": "url", "url": "https://github.com/leonasdev/copy-buttons.git", "ref": "v1.5.7" }
+    }
+  ]
+}

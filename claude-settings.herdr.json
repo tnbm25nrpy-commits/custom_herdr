@@ -3,6 +3,7 @@
   "env": {
     "CLAUDE_CODE_PLUGIN_DIRS": "{HOME_WIN}\\.claude\\mods"
   },
+  "tui": "fullscreen",
   "hooks": {
     "PostToolUse": [
       {

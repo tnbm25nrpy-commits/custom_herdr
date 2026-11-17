@@ -1,0 +1,146 @@
+# Each new Claude Code, checked once: every check on Linux, macOS and
+# Windows, and a turn the model answers. A version that fails opens an issue
+# (one a version); one that passes closes the issues of those before it, and
+# commits .github/claude-code-version and README's "Tested with" to main,
+# each where it is older, which also keeps this schedule from being turned
+# off for a quiet repository.
+name: Claude Code watch
+
+on:
+  schedule:
+    - cron: '23 */6 * * *'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: A Claude Code version to check, checked again if it was; the latest when empty.
+        type: string
+        default: ''
+
+permissions:
+  contents: read
+
+concurrency:
+  group: claude-code-watch
+
+env:
+  LABEL: claude-code-update
+  # The issue a failing version opens, found again by its title.
+  TITLE: 'Claude Code {0} breaks copy-buttons'
+
+jobs:
+  detect:
+    name: Find a version not checked
+    runs-on: ubuntu-24.04
+    permissions:
+      issues: read
+    outputs:
+      version: ${{ steps.version.outputs.version }}
+      due: ${{ steps.due.outputs.due }}
+    steps:
+      - id: version
+        env:
+          WANTED: ${{ inputs.version }}
+        run: |
+          version=${WANTED:-$(curl -fsSL https://downloads.claude.ai/claude-code-releases/latest)}
+          echo "$version" | grep -Eq '^[0-9]+\.[0-9]+\.[0-9]+$' || { echo "not a version: $version" >&2; exit 1; }
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      # Kept 7 days from its last look-up: a week without a release checks
+      # the same version again.
+      - id: checked
+        uses: actions/cache/restore@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .claude-code-checked
+          key: claude-code-checked-${{ steps.version.outputs.version }}
+          lookup-only: true
+
+      # A version that failed is not checked again on schedule: its issue is
+      # open.
+      - id: due
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.version.outputs.version }}
+          CHECKED: ${{ steps.checked.outputs.cache-hit }}
+          BY_HAND: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          title=${TITLE/'{0}'/$VERSION}
+          reported=$(gh issue list -R "$GITHUB_REPOSITORY" --state open --limit 200 --json title --jq "[.[] | select(.title == \"$title\")] | length")
+          if [ "$BY_HAND" = true ] || { [ "$CHECKED" != true ] && [ "$reported" = 0 ]; }; then due=true; else due=false; fi
+          echo "Claude Code $VERSION: checked ${CHECKED:-false}, open issues $reported, due $due"
+          echo "due=$due" >> "$GITHUB_OUTPUT"
+
+  checks:
+    needs: detect
+    if: needs.detect.outputs.due == 'true'
+    uses: ./.github/workflows/checks.yml
+    with:
+      claude-code-version: ${{ needs.detect.outputs.version }}
+      platforms: true
+      live: true
+    secrets: inherit
+
+  report:
+    name: Report
+    needs: [detect, checks]
+    if: ${{ !cancelled() && needs.detect.outputs.due == 'true' }}
+    runs-on: ubuntu-24.04
+    permissions:
+      actions: read
+      contents: write
+      issues: write
+    env:
+      GH_TOKEN: ${{ github.token }}
+      VERSION: ${{ needs.detect.outputs.version }}
+      RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Open or update the version's issue
+        if: needs.checks.result != 'success'
+        run: |
+          gh label create "$LABEL" --color D93F0B --description 'A Claude Code release the checks fail on' --force
+          failed=$(gh run view "$GITHUB_RUN_ID" --json jobs --jq '.jobs[] | select(.conclusion == "failure") | "- " + .name' )
+          body=$(printf 'The checks fail on Claude Code %s.\n\nFailed:\n%s\n\nRun: %s (its artifacts hold what the screens showed).\n' "$VERSION" "$failed" "$RUN")
+          title=${TITLE/'{0}'/$VERSION}
+          issue=$(gh issue list --state open --limit 200 --json number,title --jq ".[] | select(.title == \"$title\") | .number" | head -n 1)
+          if [ -n "$issue" ]; then gh issue comment "$issue" --body "$body"; else gh issue create --title "$title" --label "$LABEL" --body "$body"; fi
+
+      - name: Mark the version checked
+        if: needs.checks.result == 'success'
+        run: echo "$VERSION" > .claude-code-checked
+      - uses: actions/cache/save@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        if: needs.checks.result == 'success'
+        with:
+          path: .claude-code-checked
+          key: claude-code-checked-${{ needs.detect.outputs.version }}
+
+      - name: Close the issues of the versions before
+        if: needs.checks.result == 'success'
+        run: |
+          gh issue list --label "$LABEL" --state open --limit 200 --json number --jq '.[].number' |
+            while read -r number; do
+              gh issue close "$number" --comment "Claude Code $VERSION passes every check: $RUN"
+            done
+
+      # Committed to main as it is now, not as this run checked it out. A
+      # push made with this token starts no workflow: the checks above are
+      # this version's.
+      - name: Check with this version from now on
+        if: needs.checks.result == 'success'
+        run: |
+          git fetch --depth=1 origin main
+          git checkout -B main FETCH_HEAD
+          # Each raised to this version on its own, where it is older: a pull
+          # request may have pinned the checks to it already.
+          older() { [ "$1" != "$VERSION" ] && [ "$(printf '%s\n%s\n' "$1" "$VERSION" | sort -V | tail -n 1)" = "$VERSION" ]; }
+          pinned=$(cat .github/claude-code-version)
+          if older "$pinned"; then echo "$VERSION" > .github/claude-code-version; fi
+          tested=$(sed -nE 's/.*Tested with Claude Code [0-9]+\.[0-9]+\.[0-9]+ to ([0-9]+\.[0-9]+\.[0-9]+).*/\1/p' README.md)
+          if [ -n "$tested" ] && older "$tested"; then
+            sed -E -i "s/(Tested with Claude Code [0-9]+\.[0-9]+\.[0-9]+) to [0-9]+\.[0-9]+\.[0-9]+/\1 to $VERSION/" README.md
+          fi
+          if git diff --quiet; then echo "already at $pinned, README at ${tested:-none}"; exit 0; fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -am "ci: check with Claude Code $VERSION" -m "Claude Code $VERSION passes every check: $RUN"
+          git push origin main

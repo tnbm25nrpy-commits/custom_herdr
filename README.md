@@ -62,6 +62,7 @@ What is tracked is defined in **`manifest.ps1`** (one list for export and instal
 | `claude/hooks/herdr-wait-state.ps1` | `~/.claude/hooks/` | Keeps an agent "working" while background tasks run |
 | `claude/skills/delegate`, `claude/agents/*`, `claude/scripts/herdr-worker.ps1`, `trust-dir.mjs`, `sec-scan.sh` | `~/.claude/` | Delegation workflow with visible herdr worker agents |
 | `claude/mods/quota-bar` | `~/.claude/mods/` | Claude Code mod: context / model / quota line under the prompt |
+| `claude/mods/copy-buttons` | `~/.claude/mods/` | Copy buttons on code blocks, tables and replies ([leonasdev/copy-buttons](https://github.com/leonasdev/copy-buttons), needs `"tui": "fullscreen"`, set by the settings merge) |
 | `home/theme-tools`, `home/omarchy-tools` | `~/` | Python tools that built the themes and wallpapers |
 | `claude-settings.herdr.json`, `claude-CLAUDE.herdr.md`, `tools/` | (merged by install) | Settings fragment, CLAUDE.md rules, merge script |
 
@@ -146,6 +147,7 @@ A live map of what every Claude agent is doing, in the style of [lot-map](https:
 
 ### Claude Code integration
 - **quota-bar mod**: under the prompt, after the mode pill: `context N% used · model · 5h: N%  week: N%`. `/quota` toggles it. Loaded via `CLAUDE_CODE_PLUGIN_DIRS`.
+- **copy-buttons mod** ([leonasdev/copy-buttons](https://github.com/leonasdev/copy-buttons), v1.5.7, MIT): copy buttons on code blocks and tables (on hover) and `Reply` at the end of each answer. Needs `"tui": "fullscreen"` (in the settings fragment). Update: `git -C ~/.claude/mods/copy-buttons pull`, then `export.ps1`.
 - **Waiting status** (`herdr-wait-state.ps1`, Stop hook): an agent with background shells or subagents stays "working · waiting: <cmd>" in herdr instead of showing done.
 - **Visible workers** (`delegate` skill + `herdr-worker.ps1`): `impl-*` / `reviewer*` agents run as `hc` sub-agents listed under their orchestrator in the Agents sidebar; `trust-dir.mjs` pre-trusts worktree folders so workers don't stall on the trust dialog.
 

@@ -1,0 +1,97 @@
+name: Bug
+description: Buttons missing, in the wrong place, or copying the wrong thing.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The buttons depend on how your terminal draws and reports the pointer, so the terminal's name and version help most. Check Troubleshooting in the [README](https://github.com/leonasdev/copy-buttons#readme) first: a few common cases are there.
+
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: And what you expected instead.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: How to make it happen
+      description: The answer it happens on helps, as Markdown (a code block, a table), and the window's width if it matters.
+      placeholder: |
+        1. Ask for ... so the answer holds a table
+        2. Hover the table
+        3. ...
+
+  - type: textarea
+    id: screenshot
+    attributes:
+      label: Screenshot
+      description: Of the answer and where the buttons are, or are not.
+
+  - type: input
+    id: terminal
+    attributes:
+      label: Terminal and its version
+      placeholder: iTerm2 3.5.4, Windows Terminal 1.21, Ghostty 1.1, ...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: between
+    attributes:
+      label: Between Claude Code and the terminal
+      options:
+        - label: tmux
+        - label: GNU screen
+        - label: SSH
+        - label: WSL
+
+  - type: dropdown
+    id: os
+    attributes:
+      label: Operating system
+      options: [Linux, macOS, Windows]
+    validations:
+      required: true
+
+  - type: input
+    id: claude-code
+    attributes:
+      label: Claude Code version
+      description: What `claude --version` prints.
+      placeholder: 2.1.314 (Claude Code)
+    validations:
+      required: true
+
+  - type: input
+    id: plugin
+    attributes:
+      label: copy-buttons version
+      description: As `/plugin` shows it.
+      placeholder: 1.4.1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: block-buttons
+    attributes:
+      label: Code & table buttons
+      options: [hover, always, end-of-answer]
+      default: 0
+
+  - type: dropdown
+    id: icon
+    attributes:
+      label: Icon style
+      options: [standard, nerd-font]
+      default: 0
+
+  - type: dropdown
+    id: reply-format
+    attributes:
+      label: Default Reply copy format
+      options: [markdown, rendered]
+      default: 0

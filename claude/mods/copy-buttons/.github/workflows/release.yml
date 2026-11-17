@@ -1,0 +1,48 @@
+# Release a version from GitHub, by hand: every check on Linux, macOS and
+# Windows at the Claude Code in .github/claude-code-version, then
+# dev/release.sh on main, which runs dev/release-check.sh, commits to main and
+# tags through GitHub's API (so GitHub signs the commit: Verified) and makes
+# the GitHub release. A tag made with this token starts no workflow, so the
+# checks a release's tag would run in ci.yml run here first.
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: The version to release, x.y.z (CHANGELOG.md's [Unreleased] entries go under it).
+        type: string
+        required: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+
+jobs:
+  checks:
+    if: github.ref == 'refs/heads/main'
+    uses: ./.github/workflows/checks.yml
+    with:
+      platforms: true
+
+  release:
+    name: Release ${{ inputs.version }}
+    needs: checks
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    steps:
+      # The whole history and the tags: dev/release.sh lists the commits
+      # since the last release, and refuses a tag that exists.
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup
+
+      # dev/release.sh stops if main moved on since the checks: release again.
+      - env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ inputs.version }}
+        run: dev/release.sh "$VERSION"
