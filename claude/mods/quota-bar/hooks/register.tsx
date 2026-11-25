@@ -8,13 +8,15 @@ import type { QuotaStats } from '../types'
 
 const MUTED = '#8a7f99'
 const MODEL = '#e6dcff'
-const SEP = '  ·  '
+const SEP = ' · '
+const RIGHT = 2
 // Cells left of the row: the footer's indent plus Claude Code's pill ("⏵⏵ auto mode on · " is 18;
 // manual/plan/edits differ by a few), so the row centers under the prompt and stays put per mode.
 const LEFT = 20
 
 const stats = atom({ plugin: 'quota-bar', key: 'stats' } as const, null)
 const model = atom({ plugin: 'quota-bar', key: 'model' } as const, null)
+const effort = atom({ plugin: 'quota-bar', key: 'effort' } as const, null)
 const isOff = atom({ plugin: 'quota-bar', key: 'isOff' } as const, false)
 
 // Context quality falls off well before the window is full; auto-compact fires near 85-90%.
@@ -165,34 +167,38 @@ export const register: Register = on => {
     if (!s && !name) return next(e)
 
     const { Box, Text } = $.ui.resolve(e)
+    const eff = await read($, effort)
     const groups: { text: string; node: RenderChildren[] }[] = []
 
-    if (s?.context != null) {
-      const t = `context ${Math.round(s.context)}% used`
-      groups.push({ text: t, node: [<Text color={contextColor(s.context)}>{t}</Text>] })
+    if (name) {
+      const t = eff ? `${name} ${eff}` : name
+      groups.push({ text: t, node: [<Text color={MODEL}>{t}</Text>] })
     }
-    if (name) groups.push({ text: name, node: [<Text color={MODEL}>{name}</Text>] })
-    const quota: RenderChildren[] = []
-    let quotaText = ''
     if (s?.fiveHour != null) {
       const v = `${Math.round(s.fiveHour)}%`
-      quota.push(<Text color={MUTED}>5h: </Text>, <Text color={quotaColor(s.fiveHour)}>{v}</Text>)
-      quotaText += `5h: ${v}`
+      groups.push({
+        text: `5h ${v}`,
+        node: [<Text color={MUTED}>5h </Text>, <Text color={quotaColor(s.fiveHour)}>{v}</Text>],
+      })
     }
     if (s?.week != null) {
       const v = `${Math.round(s.week)}%`
-      if (quota.length) {
-        quota.push(<Text color={MUTED}>{'  '}</Text>)
-        quotaText += '  '
-      }
-      quota.push(<Text color={MUTED}>week: </Text>, <Text color={quotaColor(s.week)}>{v}</Text>)
-      quotaText += `week: ${v}`
+      groups.push({
+        text: `wk ${v}`,
+        node: [<Text color={MUTED}>wk </Text>, <Text color={quotaColor(s.week)}>{v}</Text>],
+      })
     }
-    if (quota.length) groups.push({ text: quotaText, node: quota })
+    if (s?.context != null) {
+      const v = `${Math.round(s.context)}%`
+      groups.push({
+        text: `ctx ${v}`,
+        node: [<Text color={MUTED}>ctx </Text>, <Text color={contextColor(s.context)}>{v}</Text>],
+      })
+    }
 
     const width = groups.reduce((n, g) => n + g.text.length, 0) + SEP.length * (groups.length - 1)
     const columns = e.viewport?.columns ?? 0
-    const pad = Math.max(0, Math.floor((columns - width) / 2) - LEFT)
+    const pad = Math.max(0, columns - LEFT - width - RIGHT)
 
     return (
       <Box flexDirection="row">
@@ -202,5 +208,6 @@ export const register: Register = on => {
         </Text>
       </Box>
     )
+
   })
 }

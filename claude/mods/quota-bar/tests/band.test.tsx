@@ -53,7 +53,7 @@ for (const surface of ['desktop', 'terminal'] as const) {
       viewport: { columns: 100, rows: 40 },
     })
 
-    expect(await ui.find({ type: 'Text', text: /context 12% used/ })).toBeDefined()
+    expect(await ui.find({ type: 'Text', text: /^12%$/ })).toBeDefined()
     expect(await ui.find({ type: 'Text', text: /^Opus 5\.5$/ })).toBeDefined()
     expect(await ui.find({ type: 'Text', text: /^40%$/ })).toBeDefined()
     expect(await ui.find({ type: 'Text', text: /^30%$/ })).toBeDefined()

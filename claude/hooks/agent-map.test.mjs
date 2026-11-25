@@ -18,7 +18,7 @@ const pre = (tool, ti, extra = {}) => buildLine('pre', { session_id: 's1', tool_
 const st = (tool, ti) => { const l = pre(tool, ti); return [l.station, l.label, l.file, l.write]; };
 
 // --- station rules
-eq('Read', st('Read', { file_path: 'C:\\Users\\me\\Desktop\\a\\b.txt' }), ['files', 'a/b.txt', 'c:/users/me/desktop/a/b.txt', false]);
+eq('Read', st('Read', { file_path: 'C:\\Users\\me\\Desktop\\a\\b.txt' }), ['files', 'a/b.txt', 'C:/Users/me/desktop/a/b.txt', false]);
 eq('Write', st('Write', { file_path: 'C:/x/y/z.md' }), ['files', 'y/z.md', 'c:/x/y/z.md', true]);
 eq('Edit', st('Edit', { file_path: 'C:/x/y/z.md' })[3], true);
 eq('NotebookEdit', st('NotebookEdit', { notebook_path: 'C:/x/n.ipynb' }), ['files', 'x/n.ipynb', 'c:/x/n.ipynb', true]);
@@ -105,7 +105,7 @@ eq('existing /-path accepted', bf('Bash', `cat ${slashesOf(tmpdir())}`), slashes
 eq('cd arg not collected', bf('Bash', 'cd C:/x/mods/agent-map; cat -n main.js | sed -n 1,5p'), null);
 eq('cd arg not collected 2', bf('Bash', 'cd C:/x/mods/agent-map && cat C:/x/main.js'), 'c:/x/main.js');
 eq('ps Set-Location not collected', bf('PowerShell', 'Set-Location C:\\x\\y; Get-Content a.txt'), null);
-eq('case-insensitive path', [bf('Bash', 'cat C:\\Users\\me\\X.txt'), bf('Bash', 'cat c:/users/me/x.txt')], ['c:/users/me/x.txt', 'c:/users/me/x.txt']);
+eq('case-insensitive path', [bf('Bash', 'cat C:\\Users\\me\\X.txt'), bf('Bash', 'cat C:/Users/me/x.txt')], ['C:/Users/me/x.txt', 'C:/Users/me/x.txt']);
 eq('two paths -> null', buildLine('pre', { session_id: 's', tool_name: 'Bash', tool_use_id: 'x', tool_input: { command: 'cp C:/a/b C:/c/d' } }, 1).file, null);
 
 // --- event shapes
@@ -129,8 +129,8 @@ const CWD = slashesOf(tmpdir());                                   // an existin
 const at = (tool, ti, extra = {}) => pre(tool, ti, extra);
 const sh = (command, extra = {}) => { const l = pre('Bash', { command }, { cwd: CWD, ...extra }); return [l.station, l.label, l.file ?? null, l.path ?? null, l.write]; };
 // 1. path keeps the case, file stays lowercase
-eq('v2 path case', [pre('Read', { file_path: 'C:\\Users\\me\\Notes.TXT' }).file, pre('Read', { file_path: 'C:\\Users\\me\\Notes.TXT' }).path], ['c:/users/me/notes.txt', 'C:/Users/me/Notes.TXT']);
-eq('v2 path git-bash drive', [pre('Bash', { command: 'cat /c/Users/me/X.txt' }).file, pre('Bash', { command: 'cat /c/Users/me/X.txt' }).path], ['c:/users/me/x.txt', 'C:/Users/me/X.txt']);
+eq('v2 path case', [pre('Read', { file_path: 'C:\\Users\\me\\Notes.TXT' }).file, pre('Read', { file_path: 'C:\\Users\\me\\Notes.TXT' }).path], ['C:/Users/me/notes.txt', 'C:/Users/me/Notes.TXT']);
+eq('v2 path git-bash drive', [pre('Bash', { command: 'cat /c/Users/me/X.txt' }).file, pre('Bash', { command: 'cat /c/Users/me/X.txt' }).path], ['C:/Users/me/x.txt', 'C:/Users/me/X.txt']);
 eq('v2 no file -> no path key', 'path' in pre('Bash', { command: 'ls' }), false);
 eq('v2 ps path', pre('PowerShell', { command: 'Get-Content C:\\A\\B.txt' }).path, 'C:/A/B.txt');
 // 2. git and build stations, precedence network > build > git > files > shell

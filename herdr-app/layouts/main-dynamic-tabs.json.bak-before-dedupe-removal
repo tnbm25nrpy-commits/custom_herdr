@@ -1,0 +1,279 @@
+{
+  "id": "root",
+  "cloned_from": {
+    "name": "main",
+    "version": "0.1.14"
+  },
+  "type": "row",
+  "children": [
+    {
+      "id": "sidebar",
+      "type": "column",
+      "children": [
+        {
+          "id": "brand",
+          "type": "block",
+          "content": {
+            "mod": "my-chrome"
+          },
+          "size": {
+            "px": 46
+          },
+          "window_drag": true
+        },
+        {
+          "id": "sidebar-lists",
+          "type": "column",
+          "children": [
+            {
+              "id": "spaces",
+              "type": "block",
+              "content": {
+                "mod": "my-spaces"
+              },
+              "size": {
+                "weight": 0.7911999821662903
+              },
+              "min": 90
+            },
+            {
+              "id": "agents",
+              "type": "block",
+              "content": {
+                "mod": "my-agents"
+              },
+              "size": {
+                "weight": 1.208799958229065
+              },
+              "min": 90
+            },
+            {
+              "id": "sidebar-footer",
+              "type": "block",
+              "content": {
+                "mod": "my-chrome",
+                "props": {
+                  "footer": true
+                }
+              },
+              "size": {
+                "px": 62
+              }
+            }
+          ],
+          "padding": [
+            8,
+            8
+          ],
+          "gap": 8
+        }
+      ],
+      "size": {
+        "px": 299
+      },
+      "min": 44,
+      "max": 480,
+      "resizable": false
+    },
+    {
+      "id": "work",
+      "type": "column",
+      "children": [
+        {
+          "id": "tabs",
+          "type": "block",
+          "content": {
+            "mod": "tabs-dynamic"
+          },
+          "size": {
+            "px": 46
+          },
+          "window_drag": true
+        },
+        {
+          "id": "work-stack",
+          "type": "stack",
+          "children": [
+            {
+              "id": "work-body",
+              "type": "row",
+              "children": [
+                {
+                  "id": "main",
+                  "type": "block",
+                  "content": {
+                    "tab": "active",
+                    "pane": {
+                      "header": {
+                        "content": {
+                          "mod": "my-pane"
+                        },
+                        "reveal": "always",
+                        "height": 30,
+                        "position": "top"
+                      },
+                      "background": "#00000000",
+                      "border": {
+                        "width": 1,
+                        "color": "border"
+                      },
+                      "focus": {
+                        "width": 1,
+                        "color": "accent"
+                      },
+                      "radius": 10,
+                      "gap": 8,
+                      "lone": true
+                    }
+                  }
+                },
+                {
+                  "id": "panel",
+                  "type": "column",
+                  "children": [
+                    {
+                      "id": "panel-body",
+                      "type": "stack",
+                      "children": [
+                        {
+                          "id": "files",
+                          "type": "block",
+                          "content": {
+                            "mod": "my-files"
+                          }
+                        },
+                        {
+                          "id": "changes",
+                          "type": "block",
+                          "content": {
+                            "mod": "my-changes"
+                          }
+                        },
+                        {
+                          "id": "show",
+                          "type": "block",
+                          "content": {
+                            "mod": "show"
+                          }
+                        }
+                      ],
+                      "active": "show",
+                      "size": {
+                        "weight": 1
+                      },
+                      "min": 160
+                    },
+                    {
+                      "id": "ci",
+                      "type": "block",
+                      "content": {
+                        "mod": "ci-watch"
+                      },
+                      "size": {
+                        "px": 62
+                      },
+                      "min": 48,
+                      "max": 200
+                    }
+                  ],
+                  "size": {
+                    "px": 284
+                  },
+                  "min": 280,
+                  "max": 900,
+                  "gap": 8
+                }
+              ],
+              "padding": 8,
+              "gap": 8
+            },
+            {
+              "id": "todo",
+              "type": "block",
+              "content": {
+                "mod": "todo"
+              },
+              "padding": 8
+            },
+            {
+              "id": "agent-map",
+              "type": "block",
+              "content": {
+                "mod": "agent-map"
+              },
+              "padding": 8
+            }
+          ],
+          "active": "work-body",
+          "size": {
+            "weight": 1
+          }
+        },
+        {
+          "id": "os-notify",
+          "type": "block",
+          "content": {
+            "mod": "os-notify"
+          },
+          "size": {
+            "px": 0
+          }
+        },
+        {
+          "id": "ring",
+          "type": "block",
+          "content": {
+            "mod": "ring"
+          },
+          "size": {
+            "px": 0
+          }
+        },
+        {
+          "id": "no-toast",
+          "type": "block",
+          "content": {
+            "mod": "no-toast"
+          },
+          "size": {
+            "px": 0
+          }
+        },
+        {
+          "id": "space-dedupe",
+          "type": "block",
+          "content": {
+            "mod": "space-dedupe"
+          },
+          "size": {
+            "px": 0
+          }
+        }
+      ],
+      "resizable": false
+    }
+  ],
+  "background": {
+    "image": "backgrounds/omarchy/everforest/1-tree-tops.jpg",
+    "fit": "cover"
+  },
+  "colors": {
+    "canvas": "#00000000",
+    "chrome": "#2d353b99",
+    "surface": "#2d353b99"
+  },
+  "terminal_padding": [
+    14,
+    12
+  ],
+  "terminal_opacity": 0.6200000047683716,
+  "divider": {
+    "width": 0,
+    "color": "border"
+  },
+  "titlebar": "none",
+  "traffic_lights": [
+    12,
+    16
+  ]
+}
